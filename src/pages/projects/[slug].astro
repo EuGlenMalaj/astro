@@ -31,7 +31,7 @@ export const getStaticPaths = async () => {
 const { project } = Astro.props;
 ---
 
-<BaseLayout title={`Euglen Malaj | ${project.data.title[0].text}`}>
+<BaseLayout title={`Euglen Malaj | ${project.data.title[0].text}`} location="/projects">
   <h1 class='text-3xl w-full font-bold mb-5'>{project.data.title[0].text}</h1>
   {project.data.description.map((desc) => {
     return <p class='mb-5'>{desc.text}</p>;
