@@ -1,12 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HorizontalCard from '../components/HorizontalCard.astro';
-const projects = await fetch(`https://glenmalaj.cdn.prismic.io/api/v2/documents/search?ref=Y-fgNBEAACIAPswB&access_token=${import.meta.env.PRISMIC_ACCESS_TOKEN}`)
-  .then((res) => res.json()).catch(e => console.log(e));
-  const threeProjects = projects.results?.slice(0, 3) ?? [];
+let allData = await fetch(
+  `https://glenmalaj.cdn.prismic.io/api/v2?access_token=${
+    import.meta.env.PRISMIC_ACCESS_TOKEN
+  }`
+)
+  .then((res) => res.json())
+  .catch((e) => console.log(e));
+
+const masterRef = allData.refs.filter(({ id }) => id === 'master')[0].ref;
+
+const projects = await fetch(
+  `https://glenmalaj.cdn.prismic.io/api/v2/documents/search?ref=${masterRef}&access_token=${
+    import.meta.env.PRISMIC_ACCESS_TOKEN
+  }`
+)
+  .then((res) => res.json())
+  .catch((e) => console.log(e));
+const threeProjects = projects.results?.slice(0, 3) ?? [];
 ---
 
-<BaseLayout title="Euglen Malaj | Home">
+<BaseLayout title='Euglen Malaj | Home'>
   <div class='pb-12 mt-5'>
     <div class='text-xl py-1'>Hey there 👋</div>
     <div class='text-5xl font-bold'>I'm Euglen Malaj</div>
@@ -22,9 +37,7 @@ const projects = await fetch(`https://glenmalaj.cdn.prismic.io/api/v2/documents/
       </text>
     </div>
     <div class='mt-8'>
-      <a class='btn' href='/contact'>
-        Let's connect!</a
-      >
+      <a class='btn' href='/contact'> Let's connect!</a>
     </div>
   </div>
 
@@ -36,14 +49,14 @@ const projects = await fetch(`https://glenmalaj.cdn.prismic.io/api/v2/documents/
     threeProjects.map(({ data, slugs }) => {
       return (
         <>
-        <HorizontalCard
-          title={data.title[0].text}
-          img={data.images[0].image.url}
-          desc={data.description[0].text.slice(0, 100) + '...'}
-          url={`/projects/${slugs[0]}`}
-          badge='FOSS'
-        />
-        {projects.length > 1 && <div class='divider my-0'></div>}
+          <HorizontalCard
+            title={data.title[0].text}
+            img={data.images[0].image.url}
+            desc={data.description[0].text.slice(0, 100) + '...'}
+            url={`/projects/${slugs[0]}`}
+            badge='FOSS'
+          />
+          {projects.length > 1 && <div class='divider my-0' />}
         </>
       );
     })
