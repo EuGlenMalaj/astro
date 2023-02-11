@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+export const getStaticPaths = async () => {
+  let projects = await fetch(`https://glenmalaj.cdn.prismic.io/api/v2/documents/search?ref=Y-fgNBEAACIAPswB&access_token=${import.meta.env.PRISMIC_ACCESS_TOKEN}`)
+  .then((res) => res.json()).catch(e => console.log(e));
+  projects = projects.results;
+  return projects.map(project => {
+    return {
+      params: {
+        slug: project.slugs[0]
+      },
+      props: { project }
+    }
+  });
+};
+
+const { project } = Astro.props;
+console.log(project.data);
+---
+<BaseLayout title={`Euglen Malaj | ${project.data.title[0].text}`}>
+  <div>{project.data.title[0].text}</div>
+</BaseLayout>
