@@ -54,7 +54,7 @@ const threeProjects = projects.results?.slice(0, 3) ?? [];
             img={data.images[0].image.url}
             desc={data.description[0].text.slice(0, 100) + '...'}
             url={`/projects/${slugs[0]}`}
-            badge='FOSS'
+            badge={data.type}
           />
           {projects.length > 1 && <div class='divider my-0' />}
         </>

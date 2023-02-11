@@ -38,7 +38,7 @@ const { page } = Astro.props;
           img={data.images[0].image.url}
           desc={data.description[0].text.slice(0, 100) + '...'}
           url={`/projects/${slugs[0]}`}
-          badge='FOSS'
+          badge={data.type}
         />
       );
     })
