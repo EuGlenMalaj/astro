@@ -23,23 +23,23 @@ const { location } = Astro.props;
       </a>
     </div>
     <ul class='grow shrink'>
-      <li>
-        <a href='/' class={location === '/' ? 'active' : ''}> Home</a>
+      <li class="rounded-md">
+        <a href='/' class={`rounded-md ${location === '/' ? 'active' : ''}`}> Home</a>
       </li>
-      <li>
-        <a href='/projects' class={location === '/projects' ? 'active' : ''}
+      <li class="rounded-md">
+        <a href='/projects' class={`rounded-md ${location === '/projects' ? 'active' : ''}`}
           >Projects</a>
       </li>
-      <li>
-        <a href='/services' class={location === '/services' ? 'active' : ''}
+      <li class="rounded-md">
+        <a href='/services' class={`rounded-md ${location === '/services' ? 'active' : ''}`}
           >Services</a>
       </li>
-      <li>
-        <a href='/resume' class={location === '/resume' ? 'active' : ''}
+      <li class="rounded-md">
+        <a href='/resume' class={`rounded-md ${location === '/resume' ? 'active' : ''}`}
           >Resume</a>
       </li>
-      <li>
-        <a href='/contact' class={location === '/contact' ? 'active' : ''}
+      <li class="rounded-md">
+        <a href='/contact' class={`rounded-md ${location === '/contact' ? 'active' : ''}`}
           >Contact</a>
       </li>
     </ul>

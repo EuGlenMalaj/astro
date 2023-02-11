@@ -38,15 +38,17 @@ const { project } = Astro.props;
   })}
 
   <div class='flex flex-wrap gap-4'>
-    {project.data.images.map((image) => {
+    {project.data.images.map(({image}) => {
       return (
           <img
-            src={image.image.url}
-            alt={image.image.alt}
-            class='min-w-[200px] min-h-[200px] max-w-[200px] max-h-[200px] aspect-square object-cover rounded-md'
+            src={image.url}
+            alt={image.alt}
+            class='min-w-[200px] min-h-[200px] grow aspect-square object-cover rounded-md'
           />
       );
     })}
   </div>
+
+  <a class="btn btn-ghost my-10" href='/projects'>{"<"} Back to projects</a>
 
 </BaseLayout>
