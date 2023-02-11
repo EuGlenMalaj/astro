@@ -29,9 +29,24 @@ export const getStaticPaths = async () => {
 };
 
 const { project } = Astro.props;
-console.log(project.data);
 ---
 
 <BaseLayout title={`Euglen Malaj | ${project.data.title[0].text}`}>
-  <div>{project.data.title[0].text}</div>
+  <h1 class='text-3xl w-full font-bold mb-5'>{project.data.title[0].text}</h1>
+  {project.data.description.map((desc) => {
+    return <p class='mb-5'>{desc.text}</p>;
+  })}
+
+  <div class='flex flex-wrap gap-4'>
+    {project.data.images.map((image) => {
+      return (
+          <img
+            src={image.image.url}
+            alt={image.image.alt}
+            class='min-w-[200px] min-h-[200px] max-w-[200px] max-h-[200px] aspect-square object-cover rounded-md'
+          />
+      );
+    })}
+  </div>
+
 </BaseLayout>
