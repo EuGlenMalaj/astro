@@ -1,10 +1,13 @@
 ---
 import { client } from "../client";
 import PrismicDOM from "prismic-dom";
-import { getYear } from "../utils";
+import { getFullDate, getMonthAndYear, getYear } from "../utils";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/resume/TimeLine.astro";
-const resumeItems = await client.getAllByType("cv_entry");
+const resumeItems = await client.getAllByType("cv_entry", { orderings: {
+  field: "my.cv_entry.start_date",
+  direction: "desc"
+}});
 const education = resumeItems.filter((item) => item.data.type === "education").map(({data}) => data);
 const experience = resumeItems.filter((item) => item.data.type === "experience").map(({data}) => data);
 const certifications = resumeItems.filter((item) => item.data.type === "certification").map(({data}) => data);
@@ -32,7 +35,7 @@ const languages = resumeItems.filter((item) => item.data.type === "language").ma
     {education.map((item) => (
       <TimeLineElement
         title={PrismicDOM.RichText.asText(item.title)}
-        subtitle={`${getYear(item.start_date)} to ${getYear(item.end_date)} at ${PrismicDOM.RichText.asText(item.institution)}`}
+        subtitle={`From ${getYear(item.start_date)}${getYear(item.end_date) ? ` to ${getYear(item.end_date)}` : ''} at ${PrismicDOM.RichText.asText(item.institution)}`}
         desc={PrismicDOM.RichText.asText(item.description)}
       />
     ))}
@@ -46,7 +49,7 @@ const languages = resumeItems.filter((item) => item.data.type === "language").ma
     {experience.map((item) => (
       <TimeLineElement
         title={PrismicDOM.RichText.asText(item.title)}
-        subtitle={`${getYear(item.start_date)} to ${getYear(item.end_date)} at ${PrismicDOM.RichText.asText(item.institution)}`}
+        subtitle={`From ${getMonthAndYear(item.start_date)}${getMonthAndYear(item.end_date) ? ` to ${getMonthAndYear(item.end_date)}` : ''} at ${PrismicDOM.RichText.asText(item.institution)}`}
         desc={PrismicDOM.RichText.asText(item.description)}
       />
     ))}
@@ -60,7 +63,7 @@ const languages = resumeItems.filter((item) => item.data.type === "language").ma
     {certifications.map((item) => (
       <TimeLineElement
         title={PrismicDOM.RichText.asText(item.title)}
-        subtitle={`${getYear(item.start_date)} to ${getYear(item.end_date)} at ${PrismicDOM.RichText.asText(item.institution)}`}
+        subtitle={`On ${getFullDate(item.start_date)} at ${PrismicDOM.RichText.asText(item.institution)}`}
         desc={PrismicDOM.RichText.asText(item.description)}
       />
     ))}
