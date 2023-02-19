@@ -23,24 +23,38 @@ const { location } = Astro.props;
       </a>
     </div>
     <ul class='grow shrink'>
-      <li class="rounded-md">
-        <a href='/' class={`rounded-md ${location === '/' ? 'active' : ''}`}> Home</a>
+      <li class='rounded-md'>
+        <a href='/' class={`rounded-md ${location === '/' ? 'active' : ''}`}>
+          Home</a
+        >
       </li>
-      <li class="rounded-md">
-        <a href='/projects' class={`rounded-md ${location === '/projects' ? 'active' : ''}`}
-          >Projects</a>
+      <li class='rounded-md'>
+        <a
+          href='/projects'
+          class={`rounded-md ${location === '/projects' ? 'active' : ''}`}
+          >Projects</a
+        >
       </li>
-      <li class="rounded-md">
-        <a href='/services' class={`rounded-md ${location === '/services' ? 'active' : ''}`}
-          >Services</a>
+      <li class='rounded-md'>
+        <a
+          href='/services'
+          class={`rounded-md ${location === '/services' ? 'active' : ''}`}
+          >Services</a
+        >
       </li>
-      <li class="rounded-md">
-        <a href='/resume' class={`rounded-md ${location === '/resume' ? 'active' : ''}`}
-          >Resume</a>
+      <li class='rounded-md'>
+        <a
+          href='/resume'
+          class={`rounded-md ${location === '/resume' ? 'active' : ''}`}
+          >Resume</a
+        >
       </li>
-      <li class="rounded-md">
-        <a href='/contact' class={`rounded-md ${location === '/contact' ? 'active' : ''}`}
-          >Contact</a>
+      <li class='rounded-md'>
+        <a
+          href='/contact'
+          class={`rounded-md ${location === '/contact' ? 'active' : ''}`}
+          >Contact</a
+        >
       </li>
     </ul>
     <div class='social-icons px-4 my-2 flex self-center'>
@@ -61,6 +75,28 @@ const { location } = Astro.props;
             d='M9.237 8.855v12.139h3.769v-6.003c0-1.584.298-3.118 2.262-3.118 1.937 0 1.961 1.811 1.961 3.218v5.904H21v-6.657c0-3.27-.704-5.783-4.526-5.783-1.835 0-3.065 1.007-3.568 1.96h-.051v-1.66H9.237zm-6.142 0H6.87v12.139H3.095z'
           ></path>
         </svg>
+      </a>
+      <a
+        href='https://www.facebook.com/euglen.egli'
+        target='_blank'
+        class='mx-3'
+        aria-label='Facebook'
+        title='Facebook'
+      >
+        <svg
+          enable-background='new 0 0 56.693 56.693'
+          height='56.693px'
+          id='Layer_1'
+          version='1.1'
+          viewBox='0 0 150 150'
+          width='56.693px'
+          xml:space='preserve'
+          xmlns='http://www.w3.org/2000/svg'
+          xmlns:xlink='http://www.w3.org/1999/xlink'
+          ><path
+            d='M40.43,21.739h-7.645v-5.014c0-1.883,1.248-2.322,2.127-2.322c0.877,0,5.395,0,5.395,0V6.125l-7.43-0.029  c-8.248,0-10.125,6.174-10.125,10.125v5.518h-4.77v8.53h4.77c0,10.947,0,24.137,0,24.137h10.033c0,0,0-13.32,0-24.137h6.77  L40.43,21.739z'
+          ></path></svg
+        >
       </a>
     </div>
   </div>
