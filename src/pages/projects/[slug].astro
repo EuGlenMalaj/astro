@@ -1,23 +1,8 @@
 ---
+import { client } from '../../client';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 export const getStaticPaths = async () => {
-  let allData = await fetch(
-    `https://glenmalaj.cdn.prismic.io/api/v2?access_token=${
-      import.meta.env.PRISMIC_ACCESS_TOKEN
-    }`
-  )
-    .then((res) => res.json())
-    .catch((e) => console.log(e));
-
-  const masterRef = allData.refs.filter(({ id }) => id === 'master')[0].ref;
-  let projects = await fetch(
-    `https://glenmalaj.cdn.prismic.io/api/v2/documents/search?ref=${masterRef}&access_token=${
-      import.meta.env.PRISMIC_ACCESS_TOKEN
-    }`
-  )
-    .then((res) => res.json())
-    .catch((e) => console.log(e));
-  projects = projects.results;
+  const projects = await client.getAllByType('project');
   return projects.map((project) => {
     return {
       params: {

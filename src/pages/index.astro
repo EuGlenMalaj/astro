@@ -11,26 +11,30 @@ let allData = await fetch(
 
 const masterRef = allData.refs.filter(({ id }) => id === 'master')[0].ref;
 
-const projects = await fetch(
+let projects = await fetch(
   `https://glenmalaj.cdn.prismic.io/api/v2/documents/search?ref=${masterRef}&access_token=${
     import.meta.env.PRISMIC_ACCESS_TOKEN
   }`
 )
   .then((res) => res.json())
   .catch((e) => console.log(e));
-const threeProjects = projects.results?.slice(0, 3) ?? [];
+projects = projects.results.filter(({ type }) => type === 'project');
+const threeProjects = projects?.slice(0, 3) ?? [];
 ---
 
-<BaseLayout title='Euglen Malaj | Home' location="/">
+<BaseLayout title='Euglen Malaj | Home' location='/'>
   <div class='pb-12 mt-5'>
     <div class='text-xl py-1'>Hey there 👋</div>
     <div class='text-5xl font-bold'>I'm Euglen Malaj</div>
-    <div class='text-3xl py-3 font-bold'>
-      Electrical Engineer
-    </div>
+    <div class='text-3xl py-3 font-bold'>Electrical Engineer</div>
     <div class='py-2'>
       <text class='text-lg'>
-        This is my persona website
+        Experienced business team leader with a history of working in the
+        electrical industry. Responsible for designing, developing, testing, and
+        supervising electrical wiring systems and fixtures in buildings. Skilled
+        in AutoCAD, Microsoft Office, Electrical Wiring, Management, and
+        Teamwork. Professional with a Master degree in Electrical Engineering
+        and Electropower from the Polytechnic University of Tirana.
       </text>
     </div>
     <div class='mt-8'>

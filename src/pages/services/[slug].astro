@@ -1,0 +1,25 @@
+---
+import { client } from '../../client';
+import PrismicDOM from 'prismic-dom';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+export const getStaticPaths = async () => {
+  const services = await client.getAllByType('service');
+  return services.map((service) => {
+    return {
+      params: {
+        slug: service.slugs[0],
+      },
+      props: { service },
+    };
+  });
+};
+
+const { service } = Astro.props;
+---
+
+<BaseLayout title={`Euglen Malaj | ${service.data.title[0].text}`} location="/services">
+  <h1 class='text-3xl w-full font-bold mb-5'>{service.data.title[0].text}</h1>
+  <Fragment set:html={PrismicDOM.RichText.asHtml(service.data.description)} />
+  <a class="btn btn-ghost my-10" href='/services'>← Back to services</a>
+
+</BaseLayout>
